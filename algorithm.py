@@ -1,6 +1,6 @@
 import csv
 import random
-#NEED TO FIX COMPARE SO IT DOESN"T DOUBLE NOTIFY CORRECT LETTERS WHEN THERES ONLY 1
+#NEED TO FIX COMPARE SO IT DOESN"T DOUBLE NOTIFY CORRECT LETTERS WHEN THERES ONLY 1 - try reinstating the original compare we had ~ four edits ago 
 def read_csv():
     words = []
     with open('5_letter_words.csv', mode='r') as file:
