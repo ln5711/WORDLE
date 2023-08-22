@@ -6,8 +6,9 @@ def read_csv():
     words = []
     with open('5_letter_words.csv', mode='r') as file:
         reader = csv.reader(file)
+        next(reader, None)
         for row in reader:
-            words.append(row[1])
+            words.append(row[0])
     return words
 
 
@@ -28,13 +29,12 @@ def input_word():
     while True:
         user_input = input("Please enter a five letter word:"'\n').strip()
         if user_input in word_list:
-            print("thats a five letter word!")
             break
         else:
             print("thats not a five letter word" '\n')
     return user_input
 
-def compare(ginfo,g,winfo,w): #tells us each correct character tells incorrect characters
+def compare(g,winfo,w): #tells us each correct character tells incorrect characters
                                              #tells correct character in correct position and vice versa
     if guess == w: #checks if you guessed the right word
         return True
@@ -52,7 +52,7 @@ def compare(ginfo,g,winfo,w): #tells us each correct character tells incorrect c
                     count2 +=1
                 if count == count2:
                     break
-            iterator +=1
+            iterator += 1
 
 
 
@@ -74,10 +74,9 @@ word_info = save_info(word_list[index]) #saves information of specific word amou
 counter = 0
 print(word_list[index])
 while counter < 6:
-    guess = input_word()
-    guess_info = save_info(guess)
-    result = compare(guess_info,guess,word_info,word_list[index])
-    if result == True:
+    guess = input_word() #make lowercase
+    result = compare(guess,word_info,word_list[index])
+    if result:
         print("correct")
         break
     else:
