@@ -25,13 +25,10 @@ def save_info(word):
     return letter_counts
 
 
-def input_word():
+def input_word(user_input):
     while True:
-        user_input = input("Please enter a five letter word:"'\n').strip()
         if user_input in word_list:
             break
-        else:
-            print("thats not a five letter word" '\n')
     return user_input
 
 def compare(g,winfo,w): #tells us each correct character tells incorrect characters
@@ -45,12 +42,14 @@ def compare(g,winfo,w): #tells us each correct character tells incorrect charact
             if letter == g[iterator]:  #if it has letter
                 #we check to see if its the right position
                 if w[iterator] == g[iterator]: #index is loop count
-                    print(letter + " at index " + str(iterator) + " is at right posiiton")
+                    #set info to 0 for this index at g[iterator]
+                    #print(letter + " at index " + str(iterator) + " is at right posiiton")
                     count2 +=1
                 else:
-                    print(letter + " at index " + str(iterator) + " is right but wrong position")
+                    #set info to 1 at this index of g iterator
+                    #print(letter + " at index " + str(iterator) + " is right but wrong position")
                     count2 +=1
-                if count == count2:
+                if count == count2: #count == count 2 is just amount per letter
                     break
             iterator += 1
 
