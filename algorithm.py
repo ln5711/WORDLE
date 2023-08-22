@@ -34,9 +34,13 @@ def input_word(word_list):
     return user_input
 
 def compare(g,winfo,w): #tells us each correct character tells incorrect characters
-                                             #tells correct character in correct position and vice versa
+                                    #tells correct character in correct position and vice versa
+                                    #0 is right char right position 1 right char wrong pos  2 is neither
+    info = [2] * 5
     if g == w: #checks if you guessed the right word
-        return True
+        for index in info:
+            info[index] = 0
+        return info
     for letter, count in winfo.items():
         iterator = 0
         count2 = 0
@@ -44,14 +48,17 @@ def compare(g,winfo,w): #tells us each correct character tells incorrect charact
             if letter == g[iterator]:  #if it has letter
                 #we check to see if its the right position
                 if w[iterator] == g[iterator]: #index is loop count
+                    info[iterator] = 0  #sets inex to correct
                     print(letter + " at index " + str(iterator) + " is at right posiiton")
                     count2 +=1
                 else:
+                    info[iterator] = 1
                     print(letter + " at index " + str(iterator) + " is right but wrong position")
                     count2 +=1
                 if count == count2:
                     break
             iterator += 1
+    return info
 
 
 
