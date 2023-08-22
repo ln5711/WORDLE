@@ -1,4 +1,3 @@
-
 import csv
 import random
 
@@ -25,15 +24,18 @@ def save_info(word):
     return letter_counts
 
 
-def input_word(user_input):
+def input_word(word_list):
     while True:
+        user_input = input("Please enter a five letter word:"'\n').strip()
         if user_input in word_list:
             break
+        else:
+            print("thats not a five letter word" '\n')
     return user_input
 
 def compare(g,winfo,w): #tells us each correct character tells incorrect characters
                                              #tells correct character in correct position and vice versa
-    if guess == w: #checks if you guessed the right word
+    if g == w: #checks if you guessed the right word
         return True
     for letter, count in winfo.items():
         iterator = 0
@@ -42,14 +44,12 @@ def compare(g,winfo,w): #tells us each correct character tells incorrect charact
             if letter == g[iterator]:  #if it has letter
                 #we check to see if its the right position
                 if w[iterator] == g[iterator]: #index is loop count
-                    #set info to 0 for this index at g[iterator]
-                    #print(letter + " at index " + str(iterator) + " is at right posiiton")
+                    print(letter + " at index " + str(iterator) + " is at right posiiton")
                     count2 +=1
                 else:
-                    #set info to 1 at this index of g iterator
-                    #print(letter + " at index " + str(iterator) + " is right but wrong position")
+                    print(letter + " at index " + str(iterator) + " is right but wrong position")
                     count2 +=1
-                if count == count2: #count == count 2 is just amount per letter
+                if count == count2:
                     break
             iterator += 1
 
@@ -67,20 +67,20 @@ def compare(g,winfo,w): #tells us each correct character tells incorrect charact
 
 
 
-word_list = read_csv() #reads csv and puts in list
-index = random.randint(0,495) #chooses index randomly for word
-word_info = save_info(word_list[index]) #saves information of specific word amounts of letter
-counter = 0
-print(word_list[index])
-while counter < 6:
-    guess = input_word() #make lowercase
-    result = compare(guess,word_info,word_list[index])
-    if result:
-        print("correct")
-        break
-    else:
-        print("try again")
-    counter +=1
-print(word_list[index])
-
+#word_list = read_csv() #reads csv and puts in list
+#index = random.randint(0,495) #chooses index randomly for word
+#word_info = save_info(word_list[index]) #saves information of specific word amounts of letter
+#counter = 0
+#print(word_list[index])
+#while counter < 6:
+#    guess = input_word() #make lowercase
+#    result = compare(guess,word_info,word_list[index])
+#   if result:
+#        print("correct")
+#        break
+#    else:
+#        print("try again")
+#    counter +=1
+#print(word_list[index])
+###
 
