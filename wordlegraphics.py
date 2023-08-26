@@ -22,11 +22,11 @@ def update_specific_label(row, column, char,info):
     specific_label = labels[row][column]
     char = char.upper()
     if info[column] == 0:
-        specific_label.config(text=char,fg="white", font=('Arial', 10, "bold"), background="green")
+        specific_label.config(text=char,fg="white", font=('Arial', 10, "bold"), background="#6ca965")#wordle green
     elif info[column] == 1:
-        specific_label.config(text=char,fg="white", font=('Arial', 10, "bold"), background="#ffc425")
+        specific_label.config(text=char,fg="white", font=('Arial', 10, "bold"), background="#ffc425")#wordle yellow
     else:
-        specific_label.config(text=char,fg="white", font=('Arial', 10, "bold"), background="grey")
+        specific_label.config(text=char,fg="white", font=('Arial', 10, "bold"), background="#787c7f") #wordle grey
 
 root = tk.Tk()
 
