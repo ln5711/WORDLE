@@ -62,8 +62,12 @@ myentry.bind("<Return>", process_input)
 while counter < 6 and end != 0:
     root.update_idletasks()
     root.update()
-
 print("your done")
+if end == 0:
+    tk.messagebox.showinfo('Correct!', 'You guessed correct!')
+else:
+    tk.messagebox.showinfo('Try again', 'You ran out of attempts')
+
 
 
 root.mainloop()
