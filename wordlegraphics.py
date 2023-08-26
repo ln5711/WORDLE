@@ -67,7 +67,7 @@ if end == 0:
     tk.messagebox.showinfo('Correct!', 'You guessed correct!')
 else:
     tk.messagebox.showinfo('Try again', 'You ran out of attempts')
-
-
-
+root.deiconify()
+root.destroy()
+root.quit()
 root.mainloop()
