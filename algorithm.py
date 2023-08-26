@@ -1,6 +1,5 @@
 import csv
 import random
-#NEED TO FIX COMPARE SO IT DOESN"T DOUBLE NOTIFY CORRECT LETTERS WHEN THERES ONLY 1 - try reinstating the original compare we had ~ four edits ago 
 def read_csv():
     words = []
     with open('5_letter_words.csv', mode='r') as file:
@@ -13,12 +12,12 @@ def read_csv():
 
 def save_info(word):
     letter_counts = {}
-    # Loop through each letter in the word
+    #loop through each letter in the word
     for letter in word:
-        # If the letter is already in the dictionary, increment its count by 1
+        #if the letter is already in the dictionary, increment its count by 1
         if letter in letter_counts:
             letter_counts[letter] += 1
-        # If the letter is not in the dictionary, add it with a count of 1
+        #if the letter is not in the dictionary, add it with a count of 1
         else:
             letter_counts[letter] = 1
     return letter_counts
@@ -36,27 +35,35 @@ def input_word(word_list):
 
 def compare(g, winfo, w):
     info = [2] * 5
+    guess_letter_counts = save_info(g) #get letter counts for the guess
 
-    # 1. Check for correct position
+    #check for correct position
     for index in range(len(g)):
         if g[index] == w[index]:
             info[index] = 0
+            if guess_letter_counts[g[index]] > 0:
+                guess_letter_counts[g[index]] -= 1 #deduct a count from the guess
+            if winfo[g[index]] > 0:
+                winfo[g[index]] -= 1 #deduct a count from the word
 
-    # 2. Check if the letter exists anywhere in the word
+    #check if the letter exists anywhere in the word
     for index, letter in enumerate(g):
-        if letter in w and info[index] != 0:  # check if the letter exists and hasn't been marked as correct
+        if info[index] != 0 and letter in winfo and guess_letter_counts[letter] > 0 and winfo[letter] > 0:
             info[index] = 1
+            guess_letter_counts[letter] -= 1
+            winfo[letter] -= 1
 
     return info
+#
 
-    for index, letter in enumerate(g):  # Using enumerate to get index and letter
-        if letter in winfo:  # if it has the letter
-            if w[index] == letter:  # check if it's the right position
-                info[index] = 0
-            else:
-                info[index] = 1
+    #for index, letter in enumerate(g):  # Using enumerate to get index and letter
+        #if letter in winfo:  # if it has the letter
+         #   if w[index] == letter:  # check if it's the right position
+           #     info[index] = 0
+           # else:
+          #      info[index] = 1
 
-    return info
+  #  return info
 
 #word_list = read_csv() #reads csv and puts in list
 #index = random.randint(0,495) #chooses index randomly for word
@@ -74,4 +81,3 @@ def compare(g, winfo, w):
 #    counter +=1
 #print(word_list[index])
 ###
-
